@@ -12,6 +12,7 @@ with picamera.PiCamera() as camera:
 print 'Picture taken'
 count = 1
 while True:
-	picamera.PiCamera().capture('/data/image' + count + '.jpg')
+	picamera.PiCamera().capture('/data/image' + str(count) + '.jpg')
 	print "New picture"
+	count = count + 1
 	time.sleep(10)
