@@ -1,18 +1,17 @@
 #!/usr/bin/python
 
 import time
-import picamera
+from picamera import PiCamera
 
-with picamera.PiCamera() as camera:
-    camera.resolution = (320, 240)
-    # Camera warm-up time
-    time.sleep(2)
-    camera.capture('/data/image.jpg')
-
-print 'Picture taken'
+camera = PiCamera()
+camera.resolution = (320, 240)
+camera.start_preview();
+time.sleep(5)
 count = 1
 while True:
-	picamera.PiCamera().capture('/data/image' + str(count) + '.jpg')
+	camera.capture('/data/image' + str(count) + '.jpg')
 	print "New picture"
 	count = count + 1
-	time.sleep(10)
+	
+
+camera.stop_preview();
