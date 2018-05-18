@@ -5,14 +5,13 @@ from picamera import PiCamera
 
 app = Flask(__name__)
 
-
+camera = PiCamera()
+camera.resolution = (800,600)
+camera.start_preview();
+time.sleep(5)
 
 @app.route('/')
-
 def hello_world():
-	camera = PiCamera()
-	camera.resolution = (800,600)
-	time.sleep(2)
 	camera.capture('/data/image.jpg')
 	return send_file('/data/image.jpg')
 
