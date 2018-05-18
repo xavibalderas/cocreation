@@ -31,7 +31,7 @@ COPY . ./
 
 # main.py will run when container starts up on the device
 
-CMD ["python","src/main.py"]
+#CMD ["python","src/main.py"]
 
-# CMD ["bash","start.sh"]
+ CMD ["bash","start.sh"]
 
