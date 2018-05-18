@@ -1,4 +1,7 @@
 from flask import Flask
+import time
+from picamera import PiCamera
+
 
 app = Flask(__name__)
 
@@ -7,8 +10,11 @@ app = Flask(__name__)
 @app.route('/')
 
 def hello_world():
-
-    return 'Hello World!'
+	camera = PiCamera()
+	camera.resolution = (800,600)
+	time.sleep(2)
+	camera.capture('/data/image.jpg')
+    return send_file('/data/image.jpg')
 
 
 
