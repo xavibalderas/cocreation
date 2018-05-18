@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory
+from flask import Flask, render_template
 import time
 from picamera import PiCamera
 
@@ -14,7 +14,7 @@ time.sleep(5)
 def hello_world():
 	camera.capture('img/image.jpg')
 	print "new photo"
-	return send_from_directory('img', 'image.jpg')
+	return render_template('hello.html')
 
 
 if __name__ == '__main__':
