@@ -14,8 +14,7 @@ def hello_world():
 	camera.resolution = (800,600)
 	time.sleep(2)
 	camera.capture('/data/image.jpg')
-    return send_file('/data/image.jpg')
-
+	return send_file('/data/image.jpg')
 
 
 if __name__ == '__main__':
