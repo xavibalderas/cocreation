@@ -12,9 +12,9 @@ time.sleep(5)
 
 @app.route('/')
 def hello_world():
-	camera.capture('img/image.jpg')
+	camera.capture('src/img/image.jpg')
 	print "new photo"
-	return render_template('hello.html')
+	return send_from_directory('img', 'image.jpg')
 
 
 if __name__ == '__main__':
