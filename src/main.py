@@ -16,6 +16,13 @@ def make_photo():
 	print ">> New Photo"
 	return send_from_directory('src/img', 'image.jpg')
 
+@app.route('/test')
+def test_render():
+	return render_template('test.html')
+
+@app.errorhandler(404)
+def page_not_found(error):
+	return render_template('page_not_found.html)', 404)
 
 if __name__ == '__main__':
 
