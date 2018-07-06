@@ -13,8 +13,8 @@ time.sleep(5)
 @app.route('/')
 def make_photo():
 	camera.capture('src/img/image.jpg')
-	print "new photo"
-	return send_from_directory('img', 'image.jpg')
+	print ">> New Photo"
+	return send_from_directory('src/img', 'image.jpg')
 
 
 if __name__ == '__main__':
