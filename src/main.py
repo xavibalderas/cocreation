@@ -7,11 +7,11 @@ app = Flask(__name__)
 
 camera = PiCamera()
 camera.resolution = (800,600)
-camera.start_preview();
+camera.start_preview()
 time.sleep(5)
 
 @app.route('/')
-def hello_world():
+def make_photo():
 	camera.capture('src/img/image.jpg')
 	print "new photo"
 	return send_from_directory('img', 'image.jpg')
