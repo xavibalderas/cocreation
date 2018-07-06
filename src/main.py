@@ -1,5 +1,6 @@
 from flask import Flask, render_template, send_from_directory
 import time
+from datetime import datetime
 from picamera import PiCamera
 
 
@@ -9,11 +10,13 @@ camera = PiCamera()
 camera.resolution = (800,600)
 camera.start_preview()
 time.sleep(5)
+photos_captured = 0
 
 @app.route('/')
 def make_photo():
 	camera.capture('src/img/image.jpg')
-	print ">> New Photo"
+	photos_captured = photos_captured + 1
+	print ">>[" +str(datetime.now().time()) + "] Captured Photo N° "+ photos_captured
 	return send_from_directory('src/img', 'image.jpg')
 
 @app.route('/test')
