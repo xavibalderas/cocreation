@@ -8,7 +8,7 @@ from picamera import PiCamera
 app = Flask(__name__)
 
 camera = PiCamera()
-camera.resolution = (800,600)
+camera.resolution = (3280,2464)
 camera.start_preview()
 time.sleep(5)
 
