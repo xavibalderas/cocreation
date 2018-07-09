@@ -15,10 +15,10 @@ photos_captured = 0
 
 @app.route('/')
 def make_photo():
-	camera.capture('../src/img/image.jpg')
+	camera.capture('/src/img/image.jpg')
 	#photos_captured = photos_captured + 1
 	#print '>>Captured Photo N° '+ str(photos_captured)
-	return send_from_directory('../src/img', 'image.jpg')
+	return send_from_directory('/src/img', 'image.jpg')
 
 @app.route('/test')
 def test_render():
@@ -26,12 +26,12 @@ def test_render():
 
 @app.errorhandler(404)
 def page_not_found(error):
-	return render_template('page_not_found.html', 404)
+	return render_template('page_not_found.html')
 
 @app.errorhandler(500)
 def internal_error(error):
 	print error
-	return render_template('internal_error.html',500)
+	return render_template('internal_error.html')
 
 if __name__ == '__main__':
 
