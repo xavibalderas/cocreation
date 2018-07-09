@@ -17,7 +17,7 @@ def make_photo():
 	camera.capture('image.jpg')
 	print '>>Captured Photo'
 	#return send_from_directory('/src/img', 'image.jpg')
-	return send_file('image.jpg')
+	return send_file('/usr/src/app/image.jpg')
 
 @app.route('/test')
 def test_render():
