@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, send_file
 import time
 from datetime import datetime
 from picamera import PiCamera
@@ -16,7 +16,8 @@ time.sleep(5)
 def make_photo():
 	camera.capture('image.jpg')
 	print '>>Captured Photo'
-	return send_from_directory('/src/img', 'image.jpg')
+	#return send_from_directory('/src/img', 'image.jpg')
+	return send_file('image.jpg')
 
 @app.route('/test')
 def test_render():
