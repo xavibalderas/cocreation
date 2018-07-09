@@ -26,7 +26,12 @@ def test_render():
 
 @app.errorhandler(404)
 def page_not_found(error):
-	return render_template('page_not_found.html)', 404)
+	return render_template('page_not_found.html', 404)
+
+@app.errorhandler(500)
+def internal_error(error):
+	print error
+	return render_template('internal_error.html',500)
 
 if __name__ == '__main__':
 
