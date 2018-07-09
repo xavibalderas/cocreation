@@ -15,9 +15,9 @@ photos_captured = 0
 
 @app.route('/')
 def make_photo():
-	camera.capture('/src/img/image.jpg')
-	#photos_captured = photos_captured + 1
-	#print '>>Captured Photo N° '+ str(photos_captured)
+	camera.capture('image.jpg')
+	photos_captured = photos_captured + 1
+	print '>>Captured Photo N° '+ str(photos_captured)
 	return send_from_directory('/src/img', 'image.jpg')
 
 @app.route('/test')
