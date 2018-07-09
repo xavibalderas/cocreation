@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Flask, render_template, send_from_directory
 import time
 from datetime import datetime
