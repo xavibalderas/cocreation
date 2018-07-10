@@ -24,7 +24,7 @@ time.sleep(5)
 def make_photo():
 	camera.capture('image.jpg')
 	print '>>Captured Photo'
-	# Use 'as_attachment=True' as another parameter of send_file() if you want to serve the download in the browser
+	# Use 'as_attachment=True' as another parameter of send_file() if you want to serve the download instead of just displaying the pic.
 	return send_file('/usr/src/app/image.jpg')
 
 # Testing view
