@@ -15,7 +15,7 @@ app = Flask(__name__)
 # 1280x720  (16:9)
 # 640x480   (4:3)
 camera = PiCamera()
-camera.resolution = (3280,2464)
+camera.resolution = (1280,720)
 camera.start_preview()
 time.sleep(5)
 
