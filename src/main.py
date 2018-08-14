@@ -44,6 +44,7 @@ def create_pdf():
 	print '>>DEBUG: Image added.'
 	pdf.output('test.pdf','F')
 	print '>>DEBUG: End reach.'
+	return send_file
 
 # 404 handler
 @app.errorhandler(404)
