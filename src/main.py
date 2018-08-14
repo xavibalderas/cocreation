@@ -40,7 +40,7 @@ def create_pdf():
 	pdf = FPDF('L','in',(5,7))
 	print '>>DEBUG: Pdf created.'
 	pdf.add_page()
-	pdf.image('image.jpg',w=5,h=5)
+	pdf.image('image.jpg',w=2,h=2)
 	print '>>DEBUG: Image added.'
 	pdf.output('test.pdf','F')
 	print '>>DEBUG: End reach.'
