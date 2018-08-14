@@ -36,11 +36,11 @@ def test_render():
 @app.route('/pdf')
 def create_pdf():
 
-	camera.capture('image.jpg',resize=(1280,960))
+	camera.capture('image.jpg',resize=(640,480))
 	pdf = FPDF('L','in',(5,7))
 	print '>>DEBUG: Pdf created.'
 	pdf.add_page()
-	pdf.image('image.jpg')
+	pdf.image('image.jpg',w=50,h=50)
 	print '>>DEBUG: Image added.'
 	pdf.output('test.pdf','F')
 	print '>>DEBUG: End reach.'
