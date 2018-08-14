@@ -39,7 +39,7 @@ def create_pdf():
 	camera.capture('image.jpg',resize=(640,480))
 	pdf = FPDF('L','in',(5,7))
 	print '>>DEBUG: Pdf created.'
-	#pdf.add_page()
+	pdf.add_page()
 	pdf.image('image.jpg',w=5,h=5)
 	print '>>DEBUG: Image added.'
 	pdf.output('test.pdf','F')
