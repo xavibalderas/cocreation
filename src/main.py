@@ -3,7 +3,7 @@
 from flask import Flask, render_template, send_file
 import time
 from picamera import PiCamera
-#from fpdf import FPDF
+from fpdf import FPDF
 
 
 app = Flask(__name__)
