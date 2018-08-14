@@ -3,6 +3,7 @@
 from flask import Flask, render_template, send_file
 import time
 from picamera import PiCamera
+#from fpdf import FPDF
 
 
 app = Flask(__name__)
@@ -17,7 +18,7 @@ app = Flask(__name__)
 camera = PiCamera()
 camera.resolution = (1280,720)
 camera.start_preview()
-time.sleep(5)
+time.sleep(2)
 
 # At GET, we make a photo and then we display it.
 @app.route('/')
@@ -31,6 +32,16 @@ def make_photo():
 @app.route('/test')
 def test_render():
 	return render_template('test.html')
+
+@app.route('/pdf')
+def create_pdf():
+
+	camera.capture('image.jpg',resize=(1280,960))
+	pdf = FPDF('L','in',(5,7))
+	pdf.add_page()
+	pdf.image('image.jpg')
+	pdf.output('test.pdf')
+
 # 404 handler
 @app.errorhandler(404)
 def page_not_found(error):
