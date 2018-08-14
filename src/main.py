@@ -38,9 +38,12 @@ def create_pdf():
 
 	camera.capture('image.jpg',resize=(1280,960))
 	pdf = FPDF('L','in',(5,7))
+	print '>>DEBUG: Pdf created.'
 	pdf.add_page()
 	pdf.image('image.jpg')
-	pdf.output('test.pdf')
+	print '>>DEBUG: Image added.'
+	pdf.output('test.pdf','F')
+	print '>>DEBUG: End reach.'
 
 # 404 handler
 @app.errorhandler(404)
