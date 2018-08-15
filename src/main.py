@@ -155,12 +155,10 @@ def download_pdf():
 # 404 handler
 @app.errorhandler(404)
 def page_not_found(error):
-	print error
 	return render_template('page_not_found.html')
 # 500 handler
 @app.errorhandler(500)
 def internal_error(error):
-	print error
 	return render_template('internal_error.html')
 
 
