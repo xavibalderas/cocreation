@@ -4,7 +4,6 @@ from flask import Flask, render_template, send_file, request
 import time
 import cups
 from picamera import PiCamera
-from fpdf import FPDF
 
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
@@ -94,6 +93,21 @@ def print_pdf():
 
 		# Assembling document and storing it.
 		doc.build(components)
+		
+		# Get printer and print PDF
+		cups_handler = cups.Connection()
+		printers = cups_handler.getPrinters()
+		print '>>DEBUG: Searching printers...'
+		for printer in printers:
+			print printer, printers[printer]["device-uri"]
+		
+		print '>>DEBUG: Sending pdf to first printer.'
+		printer_id=printers.keys()[0]
+		cups_handler.printFile(printer_id,'material.pdf',"Test",{})
+		print '>>DEBUG: File sent.'
+		
+		
+		
 		# Serve PDF	
 		return send_file('material.pdf')
 		
@@ -136,6 +150,7 @@ def download_pdf():
 		
 		template = PageTemplate(id='test',frames=frames,onPage=draw_static)
 		doc.addPageTemplates([template])
+		
 		# Paragraph styling
 		styles = getSampleStyleSheet()
 		styles.add(ParagraphStyle(name='header',fontName='Verdana',fontSize=14,
