@@ -3,6 +3,7 @@
 from flask import Flask, render_template, send_file, request
 import time
 import cups
+from PIL import Image
 from picamera import PiCamera
 
 from reportlab.pdfgen import canvas
@@ -28,7 +29,7 @@ app = Flask(__name__)
 # 1280x720  (16:9)
 # 640x480   (4:3)
 camera = PiCamera()
-camera.resolution = (1280,720)
+camera.resolution = (3280,2464)
 #camera.start_preview()
 time.sleep(2)
 
@@ -118,7 +119,16 @@ def download_pdf():
 	
 	if request.method == 'GET':
 		# First we snap a picture
+		
 		camera.capture('image.jpg',resize=(1280,720))
+		
+		img = Image.open('image.jpg')
+		w, h = img.size
+		area = (200,200,w-100,h-100)
+		cropped_img = img.crop(area)
+		cropped_img.save('cropped.jpg')
+		
+		
 		# We gather the names of the materials from the url arguments
 		num_args = len(request.args)
 		materials = []
@@ -133,7 +143,7 @@ def download_pdf():
 		def draw_static(canvas,doc):
 			canvas.saveState()
 			canvas.setFont('Verdana',8)
-			canvas.drawImage('image.jpg',0,0,600,400)
+			canvas.drawImage('cropped.jpg',0,0,600,400)
 			canvas.setFillColor(white)
 			canvas.rect(28,18,80,12,fill=True,stroke=False)	
 			canvas.setFillColor(black)
