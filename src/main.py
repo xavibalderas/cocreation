@@ -51,7 +51,14 @@ def print_pdf():
 	
 	if request.method == 'GET':
 		# First we snap a picture
-		camera.capture('image.jpg',resize=(1280,720))
+		camera.capture('image.jpg')
+
+		img = Image.open('image.jpg')
+                w, h = img.size
+                area = (1000,500,w-1000,h-800)
+                cropped_img = img.crop(area)
+                cropped_img.save('cropped.jpg')
+
 		# We gather the names of the materials from the url arguments
 		num_args = len(request.args)
 		materials = []
@@ -66,11 +73,11 @@ def print_pdf():
 		def draw_static(canvas,doc):
 			canvas.saveState()
 			canvas.setFont('Verdana',8)
-			canvas.drawImage('image.jpg',0,0,600,400)
+			canvas.drawImage('cropped.jpg',0,0,600,400)
 			canvas.setFillColor(white)
-			canvas.rect(28,18,80,12,fill=True,stroke=False)	
+			canvas.rect(28,48,80,12,fill=True,stroke=False)	
 			canvas.setFillColor(black)
-			canvas.drawString(30,20,'IKEA Spreitenbach')
+			canvas.drawString(30,50,'IKEA Spreitenbach')
 			canvas.restoreState()
 		# Creating the document, adding components
 		doc = BaseDocTemplate('material.pdf',pagesize=(7*inch,5*inch))
@@ -120,11 +127,11 @@ def download_pdf():
 	if request.method == 'GET':
 		# First we snap a picture
 		
-		camera.capture('image.jpg',resize=(1280,720))
+		camera.capture('image.jpg')
 		
 		img = Image.open('image.jpg')
 		w, h = img.size
-		area = (200,200,w-100,h-100)
+		area = (1000,500,w-1000,h-800)
 		cropped_img = img.crop(area)
 		cropped_img.save('cropped.jpg')
 		
@@ -145,9 +152,9 @@ def download_pdf():
 			canvas.setFont('Verdana',8)
 			canvas.drawImage('cropped.jpg',0,0,600,400)
 			canvas.setFillColor(white)
-			canvas.rect(28,18,80,12,fill=True,stroke=False)	
+			canvas.rect(28,48,80,12,fill=True,stroke=False)	
 			canvas.setFillColor(black)
-			canvas.drawString(30,20,'IKEA Spreitenbach')
+			canvas.drawString(30,50,'IKEA Spreitenbach')
 			canvas.restoreState()
 		# Creating the document, adding components
 		doc = BaseDocTemplate('material.pdf',pagesize=(7*inch,5*inch))
